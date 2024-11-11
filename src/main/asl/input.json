@@ -1,22 +1,9 @@
 {
   "agents": [
     {
-      "name" : "benevolence",
-      "script_file" : "benevolence.asl",
+      "name" : "tom",
+      "script_file" : "tom.asl",
       "number": 1
-    },
-    {
-      "name" : "competence",
-      "script_file" : "competence.asl",
-      "number": 1
-    },
-    {
-    "name" : "predictability",
-    "script_file" : "predictability.asl",
-    "number": 1
-    },
-    {"name" : "reasoning",
-    "script_file" : "reasoning.asl",
-    "number": 1}
+    }
   ]
 }

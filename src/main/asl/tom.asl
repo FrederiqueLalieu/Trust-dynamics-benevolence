@@ -1,27 +1,27 @@
-// COMPLETE
-// IDEA: this program can run into a contradiction, resolve it with reasoning
-
 // Initial beliefs
-offer(a, gardening, chilling, offer1).
-reject(a, offer1, comfort).
-reject(a, offer1, fun).
 
-offer(a, cooking, shopping, offer2).
-accept(a, offer2).
+// First request
+offer(damian, gardening, repairing, offer1).
+accept(damian, offer1).
 
-value(a, fun, shopping, 0.7).
-value(a, fun, cooking, 0.3).
-value(a, fun, chilling, 0.4).
-value(a, fun, gardening, 0.3).
+phi(damian, fun, gardening, 0.9).
+phi(damian, health, gardening, 1).
+phi(damian, fun, repairing, 0.6).
+phi(damian, health, repairing, 0.6).
 
-value(a, comfort, gardening, 0.4).
-value(a, comfort, chilling, 0.2).
+benevolence(damian, fun, 0, 1).
+benevolence(damian, health, 0, 1).
 
-benevolence(a, fun, 0, 0.5).
-benevolence(a, comfort, 0.2, 0.6).
+// Second request
+offer(damian, gardening, cleaning, offer2).
+reject(damian, offer2, fun).
+reject(damian, offer2, health).
+
+phi(damian, fun, cleaning, 0.1).
+phi(damian, health, cleaning, 0.1).
 
 // Initial goals
-// !update_benevolence(a).
+!update_benevolence(a).
 
 // Plans
 +!update_benevolence(A) =>
