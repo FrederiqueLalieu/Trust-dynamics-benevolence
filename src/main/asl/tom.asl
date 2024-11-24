@@ -1,7 +1,7 @@
 // Initial beliefs
 
 // First request
-offer(damian, gardening, repairing, offer1).
+offer(damian, repairing, gardening, offer1).
 accept(damian, offer1).
 
 phi(damian, fun, gardening, 0.9).
@@ -21,7 +21,7 @@ phi(damian, fun, cleaning, 0.1).
 phi(damian, health, cleaning, 0.1).
 
 // Initial goals
-!update_benevolence(a).
+!update_benevolence(damian).
 
 // Plans
 +!update_benevolence(A) =>
@@ -36,7 +36,7 @@ phi(damian, health, cleaning, 0.1).
     accept(A, Offer) =>
     #println("The offer was accepted.");
     +intention(A, NewPlan);
-    for (Value in value(A, Value, NewPlan, X1)) {
+    for (Value in phi(A, Value, NewPlan, X1)) {
         #println("We will check if " + Value + " is relevant.");
         !update_benevolence_accept(A, Value, NewPlan, OldPlan);
     }.
@@ -53,8 +53,8 @@ phi(damian, health, cleaning, 0.1).
     #println("It is not known yet whether " + A + " accepted or rejected the offer.").
 
 +!update_benevolence_accept(A, Value, NewPlan, OldPlan) :
-    value(A, Value, NewPlan, X1) &&
-    value(A, Value, OldPlan, X2) &&
+    phi(A, Value, NewPlan, X1) &&
+    phi(A, Value, OldPlan, X2) &&
     benevolence(A, Value, Bmin, Bmax) =>
     #println("One of the relevant values was " + Value + ".");
     B = X2 - X1;
@@ -77,13 +77,13 @@ phi(damian, health, cleaning, 0.1).
         +benevolence(A, Value, B, Bmax);
         #println("The previous interval was " + Bmin + ", " + Bmax + ".");
         #println("The benefits of the old versus the new plan are " + X2 + " versus " + X1 + ".");
-        #println("The new benevolence interval is " + B + ", " + Bmax + ".");
+        #println("The new benevolence interval is [" + B + ", " + Bmax + ">.");
     }.
 
 +!update_benevolence_reject(A, Offer, Value) :
     offer(A, NewPlan, OldPlan, Offer) &&
-    value(A, Value, NewPlan, X1) &&
-    value(A, Value, OldPlan, X2) &&
+    phi(A, Value, NewPlan, X1) &&
+    phi(A, Value, OldPlan, X2) &&
     benevolence(A, Value, Bmin, Bmax) =>
     B = X2 - X1;
     if (B < 0) {
@@ -96,7 +96,7 @@ phi(damian, health, cleaning, 0.1).
         #println("The offer was rejected on the basis of " + Value + ".");
         #println("The previous interval was " + Bmin + ", " + Bmax + ".");
         #println("The benefits of the old versus the new are " + X2 + " versus " + X1 + ".");
-        #println("The new benevolence interval is " + Bmin + ", " + B + ".");
+        #println("The new benevolence interval is [" + Bmin + ", " + B + ">.");
     }
     else {
         -benevolence(A, Value, Bmin, Bmax);
@@ -104,5 +104,5 @@ phi(damian, health, cleaning, 0.1).
         #println("The offer was rejected on the basis of " + Value + ".");
         #println("The previous interval was " + Bmin + ", " + Bmax);
         #println("The benefits of the old versus the new are " + X2 + " versus " + X1 + ".");
-        #println("The new benevolence interval is " + Bmin + ", " + B + ".");
+        #println("The new benevolence interval is [" + Bmin + ", " + B + ">.");
     }.
