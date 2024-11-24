@@ -20,7 +20,7 @@ package asl
  import bb.expstyla.exp._
  import std.{AgentCommunicationLayer, DefaultCommunications}
 
- class benevolence  (coms: AgentCommunicationLayer = new  DefaultCommunications,
+ class tom  (coms: AgentCommunicationLayer = new  DefaultCommunications,
                                      beliefBaseFactory: IBeliefBaseFactory = new StylaBeliefBaseFactory)
                       extends IntentionalAgentFactory {
 
@@ -38,17 +38,17 @@ package asl
             case SubGoalMessage(_,_,r) =>
                message.goal match {
 
-                   case benevolence.this.adopt_achievement_update_benevolence_1 =>
-                     benevolence.this.adopt_achievement_update_benevolence_1.execute(message.params.asInstanceOf[Parameters])
+                   case tom.this.adopt_achievement_update_benevolence_1 =>
+                     tom.this.adopt_achievement_update_benevolence_1.execute(message.params.asInstanceOf[Parameters])
 
-                   case benevolence.this.adopt_achievement_evaluate_offer_2 =>
-                     benevolence.this.adopt_achievement_evaluate_offer_2.execute(message.params.asInstanceOf[Parameters])
+                   case tom.this.adopt_achievement_evaluate_offer_2 =>
+                     tom.this.adopt_achievement_evaluate_offer_2.execute(message.params.asInstanceOf[Parameters])
 
-                   case benevolence.this.adopt_achievement_update_benevolence_accept_4 =>
-                     benevolence.this.adopt_achievement_update_benevolence_accept_4.execute(message.params.asInstanceOf[Parameters])
+                   case tom.this.adopt_achievement_update_benevolence_accept_4 =>
+                     tom.this.adopt_achievement_update_benevolence_accept_4.execute(message.params.asInstanceOf[Parameters])
 
-                   case benevolence.this.adopt_achievement_update_benevolence_reject_3 =>
-                     benevolence.this.adopt_achievement_update_benevolence_reject_3.execute(message.params.asInstanceOf[Parameters])
+                   case tom.this.adopt_achievement_update_benevolence_reject_3 =>
+                     tom.this.adopt_achievement_update_benevolence_reject_3.execute(message.params.asInstanceOf[Parameters])
 
 
            case _ =>
@@ -72,39 +72,42 @@ package asl
  override def agentBuilder: Agent = new Agent()
  class Agent extends IAgent {
 
-         override def agent_type: String = "benevolence"
+         override def agent_type: String = "tom"
 
          var vars = VarMap()
 
          def initGoals()(implicit executionContext: ExecutionContext) = List[StructTerm](
+                     StructTerm("update_benevolence",Seq[GenericTerm]( StructTerm("a",Seq[GenericTerm]())  ))
+
+
          )
 
          def initBeliefs()(implicit executionContext: ExecutionContext) = List[StructTerm](
-                     StructTerm("offer",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("gardening",Seq[GenericTerm]()),StructTerm("chilling",Seq[GenericTerm]()),StructTerm("offer1",Seq[GenericTerm]())))
+                     StructTerm("offer",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("gardening",Seq[GenericTerm]()),StructTerm("repairing",Seq[GenericTerm]()),StructTerm("offer1",Seq[GenericTerm]())))
            ,
-            StructTerm("reject",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("offer1",Seq[GenericTerm]()),StructTerm("comfort",Seq[GenericTerm]())))
+            StructTerm("accept",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("offer1",Seq[GenericTerm]())))
            ,
-            StructTerm("reject",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("offer1",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]())))
+            StructTerm("phi",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]()),StructTerm("gardening",Seq[GenericTerm]()),DoubleTerm(0.9)))
            ,
-            StructTerm("offer",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("cooking",Seq[GenericTerm]()),StructTerm("shopping",Seq[GenericTerm]()),StructTerm("offer2",Seq[GenericTerm]())))
+            StructTerm("phi",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("health",Seq[GenericTerm]()),StructTerm("gardening",Seq[GenericTerm]()),IntTerm(1)))
            ,
-            StructTerm("accept",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("offer2",Seq[GenericTerm]())))
+            StructTerm("phi",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]()),StructTerm("repairing",Seq[GenericTerm]()),DoubleTerm(0.6)))
            ,
-            StructTerm("value",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]()),StructTerm("shopping",Seq[GenericTerm]()),DoubleTerm(0.7)))
+            StructTerm("phi",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("health",Seq[GenericTerm]()),StructTerm("repairing",Seq[GenericTerm]()),DoubleTerm(0.6)))
            ,
-            StructTerm("value",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]()),StructTerm("cooking",Seq[GenericTerm]()),DoubleTerm(0.3)))
+            StructTerm("benevolence",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]()),IntTerm(0),IntTerm(1)))
            ,
-            StructTerm("value",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]()),StructTerm("chilling",Seq[GenericTerm]()),DoubleTerm(0.4)))
+            StructTerm("benevolence",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("health",Seq[GenericTerm]()),IntTerm(0),IntTerm(1)))
            ,
-            StructTerm("value",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]()),StructTerm("gardening",Seq[GenericTerm]()),DoubleTerm(0.3)))
+            StructTerm("offer",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("gardening",Seq[GenericTerm]()),StructTerm("cleaning",Seq[GenericTerm]()),StructTerm("offer2",Seq[GenericTerm]())))
            ,
-            StructTerm("value",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("comfort",Seq[GenericTerm]()),StructTerm("gardening",Seq[GenericTerm]()),DoubleTerm(0.4)))
+            StructTerm("reject",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("offer2",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]())))
            ,
-            StructTerm("value",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("comfort",Seq[GenericTerm]()),StructTerm("chilling",Seq[GenericTerm]()),DoubleTerm(0.2)))
+            StructTerm("reject",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("offer2",Seq[GenericTerm]()),StructTerm("health",Seq[GenericTerm]())))
            ,
-            StructTerm("benevolence",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]()),IntTerm(0),DoubleTerm(0.5)))
+            StructTerm("phi",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]()),StructTerm("cleaning",Seq[GenericTerm]()),DoubleTerm(0.1)))
            ,
-            StructTerm("benevolence",Seq[GenericTerm](StructTerm("a",Seq[GenericTerm]()),StructTerm("comfort",Seq[GenericTerm]()),DoubleTerm(0.2),DoubleTerm(0.6)))
+            StructTerm("phi",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("health",Seq[GenericTerm]()),StructTerm("cleaning",Seq[GenericTerm]()),DoubleTerm(0.1)))
 
 
          )
@@ -343,11 +346,11 @@ package asl
 
                       def plan0(vars: VarMap)(implicit executionContext: ExecutionContext): Unit = {
 
-                                               val ex_L25043 = executionContext.beliefBase.bufferedQuery( StructTerm("offer",Seq[GenericTerm](vars("A"),vars("NewPlan"),vars("OldPlan"),vars("L25043"))) )
-                                               while (ex_L25043.hasNext) {
-                                                   val sol_L25043 = ex_L25043.next
-                                                   if(sol_L25043.result) {
-                                                   vars += ("Offer" -> sol_L25043.bindings("L25043").asInstanceOf[GenericTerm])
+                                               val ex_L16532 = executionContext.beliefBase.bufferedQuery( StructTerm("offer",Seq[GenericTerm](vars("A"),vars("NewPlan"),vars("OldPlan"),vars("L16532"))) )
+                                               while (ex_L16532.hasNext) {
+                                                   val sol_L16532 = ex_L16532.next
+                                                   if(sol_L16532.result) {
+                                                   vars += ("Offer" -> sol_L16532.bindings("L16532").asInstanceOf[GenericTerm])
                                                                        PrimitiveAction.execute(PrimitiveAction.Parameters(() => println( ( (StringTerm("We are now updating according to ") + vars("Offer"))  + StringTerm(".")) )))
                                                                        PrimitiveAction.execute(PrimitiveAction.Parameters(() => println( ( (StringTerm("We dont know if ") + vars("Offer"))  + StringTerm(" is accepted. We will try to find out now.")) )))
                                                                        adopt_achievement_evaluate_offer_2.execute(Parameters(List( vars("A") , vars("Offer")  )))
@@ -447,11 +450,11 @@ package asl
 
                                           PrimitiveAction.execute(PrimitiveAction.Parameters(() => println(StringTerm("The offer was accepted."))))
                                            BeliefUpdateAction.execute(BeliefUpdateAction.Parameters("+", StructTerm("intention",Seq[GenericTerm](vars("A"),vars("NewPlan")))),GoalParser)
-                                               val ex_L76269 = executionContext.beliefBase.bufferedQuery( StructTerm("value",Seq[GenericTerm](vars("A"),vars("L76269"),vars("NewPlan"),vars("X1"))) )
-                                               while (ex_L76269.hasNext) {
-                                                   val sol_L76269 = ex_L76269.next
-                                                   if(sol_L76269.result) {
-                                                   vars += ("Value" -> sol_L76269.bindings("L76269").asInstanceOf[GenericTerm])
+                                               val ex_L61350 = executionContext.beliefBase.bufferedQuery( StructTerm("value",Seq[GenericTerm](vars("A"),vars("L61350"),vars("NewPlan"),vars("X1"))) )
+                                               while (ex_L61350.hasNext) {
+                                                   val sol_L61350 = ex_L61350.next
+                                                   if(sol_L61350.result) {
+                                                   vars += ("Value" -> sol_L61350.bindings("L61350").asInstanceOf[GenericTerm])
                                                                        PrimitiveAction.execute(PrimitiveAction.Parameters(() => println( ( (StringTerm("We will check if ") + vars("Value"))  + StringTerm(" is relevant.")) )))
                                                                        adopt_achievement_update_benevolence_accept_4.execute(Parameters(List( vars("A") , vars("Value") , vars("NewPlan") , vars("OldPlan")  )))
 
@@ -464,11 +467,11 @@ package asl
                       def plan1(vars: VarMap)(implicit executionContext: ExecutionContext): Unit = {
 
                                           PrimitiveAction.execute(PrimitiveAction.Parameters(() => println(StringTerm("The offer was rejected."))))
-                                               val ex_L62237 = executionContext.beliefBase.bufferedQuery( StructTerm("reject",Seq[GenericTerm](vars("Offer"),vars("L62237"))) )
-                                               while (ex_L62237.hasNext) {
-                                                   val sol_L62237 = ex_L62237.next
-                                                   if(sol_L62237.result) {
-                                                   vars += ("Value" -> sol_L62237.bindings("L62237").asInstanceOf[GenericTerm])
+                                               val ex_L46296 = executionContext.beliefBase.bufferedQuery( StructTerm("reject",Seq[GenericTerm](vars("Offer"),vars("L46296"))) )
+                                               while (ex_L46296.hasNext) {
+                                                   val sol_L46296 = ex_L46296.next
+                                                   if(sol_L46296.result) {
+                                                   vars += ("Value" -> sol_L46296.bindings("L46296").asInstanceOf[GenericTerm])
                                                                        PrimitiveAction.execute(PrimitiveAction.Parameters(() => println( ( (StringTerm("It was rejected on the basis of ") + vars("Value"))  + StringTerm(".")) )))
                                                                        adopt_achievement_update_benevolence_reject_3.execute(Parameters(List( vars("A") , vars("Offer") , vars("Value")  )))
 
@@ -653,9 +656,9 @@ package asl
 
 
  }
-object benevolence_companion { 
-   def create() = new benevolence().agentBuilder 
-   def create(in_coms : AgentCommunicationLayer) = new benevolence(coms = in_coms).agentBuilder 
-   def create(in_beliefBaseFactory: IBeliefBaseFactory) = new benevolence(beliefBaseFactory = in_beliefBaseFactory).agentBuilder 
-   def create(in_coms : AgentCommunicationLayer, in_beliefBaseFactory: IBeliefBaseFactory) = new benevolence(coms = in_coms, beliefBaseFactory = in_beliefBaseFactory).agentBuilder 
+object tom_companion { 
+   def create() = new tom().agentBuilder 
+   def create(in_coms : AgentCommunicationLayer) = new tom(coms = in_coms).agentBuilder 
+   def create(in_beliefBaseFactory: IBeliefBaseFactory) = new tom(beliefBaseFactory = in_beliefBaseFactory).agentBuilder 
+   def create(in_coms : AgentCommunicationLayer, in_beliefBaseFactory: IBeliefBaseFactory) = new tom(coms = in_coms, beliefBaseFactory = in_beliefBaseFactory).agentBuilder 
 } 
