@@ -13,7 +13,7 @@ benevolence(damian, fun, 0, 1).
 benevolence(damian, health, 0, 1).
 
 // Second request
-offer(damian, gardening, cleaning, offer2).
+offer(damian, cleaning, gardening, offer2).
 reject(damian, offer2, fun).
 reject(damian, offer2, health).
 
@@ -44,9 +44,9 @@ phi(damian, health, cleaning, 0.1).
 +!evaluate_offer(A, Offer) :
     reject(A, Offer, _) =>
     #println("The offer was rejected.");
-    for (Value in reject(Offer, Value)) {
-                #println("It was rejected on the basis of " + Value + ".");
-                !update_benevolence_reject(A, Offer, Value);
+    for (Value in reject(A, Offer, Value)) {
+        #println("It was rejected on the basis of " + Value + ".");
+        !update_benevolence_reject(A, Offer, Value);
             }.
 
 +!evaluate_offer(A, Offer) =>

@@ -99,7 +99,7 @@ package asl
            ,
             StructTerm("benevolence",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("health",Seq[GenericTerm]()),IntTerm(0),IntTerm(1)))
            ,
-            StructTerm("offer",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("gardening",Seq[GenericTerm]()),StructTerm("cleaning",Seq[GenericTerm]()),StructTerm("offer2",Seq[GenericTerm]())))
+            StructTerm("offer",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("cleaning",Seq[GenericTerm]()),StructTerm("gardening",Seq[GenericTerm]()),StructTerm("offer2",Seq[GenericTerm]())))
            ,
             StructTerm("reject",Seq[GenericTerm](StructTerm("damian",Seq[GenericTerm]()),StructTerm("offer2",Seq[GenericTerm]()),StructTerm("fun",Seq[GenericTerm]())))
            ,
@@ -346,11 +346,11 @@ package asl
 
                       def plan0(vars: VarMap)(implicit executionContext: ExecutionContext): Unit = {
 
-                                               val ex_L21350 = executionContext.beliefBase.bufferedQuery( StructTerm("offer",Seq[GenericTerm](vars("A"),vars("NewPlan"),vars("OldPlan"),vars("L21350"))) )
-                                               while (ex_L21350.hasNext) {
-                                                   val sol_L21350 = ex_L21350.next
-                                                   if(sol_L21350.result) {
-                                                   vars += ("Offer" -> sol_L21350.bindings("L21350").asInstanceOf[GenericTerm])
+                                               val ex_L32208 = executionContext.beliefBase.bufferedQuery( StructTerm("offer",Seq[GenericTerm](vars("A"),vars("NewPlan"),vars("OldPlan"),vars("L32208"))) )
+                                               while (ex_L32208.hasNext) {
+                                                   val sol_L32208 = ex_L32208.next
+                                                   if(sol_L32208.result) {
+                                                   vars += ("Offer" -> sol_L32208.bindings("L32208").asInstanceOf[GenericTerm])
                                                                        PrimitiveAction.execute(PrimitiveAction.Parameters(() => println( ( (StringTerm("We are now updating according to ") + vars("Offer"))  + StringTerm(".")) )))
                                                                        PrimitiveAction.execute(PrimitiveAction.Parameters(() => println( ( (StringTerm("We dont know if ") + vars("Offer"))  + StringTerm(" is accepted. We will try to find out now.")) )))
                                                                        adopt_achievement_evaluate_offer_2.execute(Parameters(List( vars("A") , vars("Offer")  )))
@@ -450,11 +450,11 @@ package asl
 
                                           PrimitiveAction.execute(PrimitiveAction.Parameters(() => println(StringTerm("The offer was accepted."))))
                                            BeliefUpdateAction.execute(BeliefUpdateAction.Parameters("+", StructTerm("intention",Seq[GenericTerm](vars("A"),vars("NewPlan")))),GoalParser)
-                                               val ex_L28614 = executionContext.beliefBase.bufferedQuery( StructTerm("phi",Seq[GenericTerm](vars("A"),vars("L28614"),vars("NewPlan"),vars("X1"))) )
-                                               while (ex_L28614.hasNext) {
-                                                   val sol_L28614 = ex_L28614.next
-                                                   if(sol_L28614.result) {
-                                                   vars += ("Value" -> sol_L28614.bindings("L28614").asInstanceOf[GenericTerm])
+                                               val ex_L67792 = executionContext.beliefBase.bufferedQuery( StructTerm("phi",Seq[GenericTerm](vars("A"),vars("L67792"),vars("NewPlan"),vars("X1"))) )
+                                               while (ex_L67792.hasNext) {
+                                                   val sol_L67792 = ex_L67792.next
+                                                   if(sol_L67792.result) {
+                                                   vars += ("Value" -> sol_L67792.bindings("L67792").asInstanceOf[GenericTerm])
                                                                        PrimitiveAction.execute(PrimitiveAction.Parameters(() => println( ( (StringTerm("We will check if ") + vars("Value"))  + StringTerm(" is relevant.")) )))
                                                                        adopt_achievement_update_benevolence_accept_4.execute(Parameters(List( vars("A") , vars("Value") , vars("NewPlan") , vars("OldPlan")  )))
 
@@ -467,11 +467,11 @@ package asl
                       def plan1(vars: VarMap)(implicit executionContext: ExecutionContext): Unit = {
 
                                           PrimitiveAction.execute(PrimitiveAction.Parameters(() => println(StringTerm("The offer was rejected."))))
-                                               val ex_L51060 = executionContext.beliefBase.bufferedQuery( StructTerm("reject",Seq[GenericTerm](vars("Offer"),vars("L51060"))) )
-                                               while (ex_L51060.hasNext) {
-                                                   val sol_L51060 = ex_L51060.next
-                                                   if(sol_L51060.result) {
-                                                   vars += ("Value" -> sol_L51060.bindings("L51060").asInstanceOf[GenericTerm])
+                                               val ex_L17867 = executionContext.beliefBase.bufferedQuery( StructTerm("reject",Seq[GenericTerm](vars("A"),vars("Offer"),vars("L17867"))) )
+                                               while (ex_L17867.hasNext) {
+                                                   val sol_L17867 = ex_L17867.next
+                                                   if(sol_L17867.result) {
+                                                   vars += ("Value" -> sol_L17867.bindings("L17867").asInstanceOf[GenericTerm])
                                                                        PrimitiveAction.execute(PrimitiveAction.Parameters(() => println( ( (StringTerm("It was rejected on the basis of ") + vars("Value"))  + StringTerm(".")) )))
                                                                        adopt_achievement_update_benevolence_reject_3.execute(Parameters(List( vars("A") , vars("Offer") , vars("Value")  )))
 
