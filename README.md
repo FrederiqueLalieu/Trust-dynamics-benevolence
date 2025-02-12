@@ -8,7 +8,7 @@ Requirements:
 * Java 11+
 * sbt or maven
 
-The project can be compiled with `$ mvn clean generate-sources` which should result in creation of a package with two scala files in `target/generated-sources/` directory.
+The project can be compiled with `$ mvn clean generate-sources` which should result in creation of a package with one scala file in `target/generated-sources/` directory. This file is already present in the repository. If you want to modify or add the agents however, you should compile the project to create the necessary scala files.
 
 To compile the agent, the following command can be used:
 
